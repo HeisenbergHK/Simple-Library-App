@@ -12,10 +12,21 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
-from decouple import config
+import environ
+import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Initialize environ
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+# Set the path to the .env file
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env('DEBUG')
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,6 +44,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # My Apps
+    "books",
+
+    # Default Apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -75,14 +90,7 @@ WSGI_APPLICATION = "SimpleLibraryApp.wsgi.application"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "SimpleLibraryAppDB",
-        "USER": "myuser",
-        "PASSWORD": "mypassword",
-        "HOST": "localhost",
-        "PORT": "5432",
-    }
+    "default": env.db("DATABASE_URL"),
 }
 
 
