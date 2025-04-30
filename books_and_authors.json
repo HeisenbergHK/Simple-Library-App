@@ -1,0 +1,120 @@
+[
+    {
+        "model": "books.Author",
+        "pk": 1,
+        "fields": {
+            "name": "J.K. Rowling"
+        }
+    },
+    {
+        "model": "books.Author",
+        "pk": 2,
+        "fields": {
+            "name": "George R.R. Martin"
+        }
+    },
+    {
+        "model": "books.Author",
+        "pk": 3,
+        "fields": {
+            "name": "J.R.R. Tolkien"
+        }
+    },
+    {
+        "model": "books.Author",
+        "pk": 4,
+        "fields": {
+            "name": "Isaac Asimov"
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 1,
+        "fields": {
+            "title": "Harry Potter and the Sorcerer's Stone",
+            "author": 1,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 2,
+        "fields": {
+            "title": "A Game of Thrones",
+            "author": 2,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 3,
+        "fields": {
+            "title": "Harry Potter and the Chamber of Secrets",
+            "author": 1,
+            "available": false
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 4,
+        "fields": {
+            "title": "The Fellowship of the Ring",
+            "author": 3,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 5,
+        "fields": {
+            "title": "The Two Towers",
+            "author": 3,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 6,
+        "fields": {
+            "title": "Foundation",
+            "author": 4,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 7,
+        "fields": {
+            "title": "I, Robot",
+            "author": 4,
+            "available": false
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 8,
+        "fields": {
+            "title": "The Hobbit",
+            "author": 3,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 9,
+        "fields": {
+            "title": "Clash of Kings",
+            "author": 2,
+            "available": true
+        }
+    },
+    {
+        "model": "books.Book",
+        "pk": 10,
+        "fields": {
+            "title": "The Return of the King",
+            "author": 3,
+            "available": false
+        }
+    }
+]
