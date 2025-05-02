@@ -1,46 +1,100 @@
 # SimpleLibraryApp 🐳📚
 
-A Django web application powered by PostgreSQL, containerized using Docker and Docker Compose.
+A Django web application for managing a simple library system. It supports PostgreSQL as the backend and offers a clean REST API for managing books and authors.  
+This app can be run either locally in your development environment or containerized using Docker and Docker Compose.
+
+This project demonstrates how to build a Django web application from scratch and deploy it both locally and using Docker, showcasing best practices in development, configuration, and containerization—with plans to extend deployment to Kubernetes using Minikube in the next phase.
 
 ---
 
-## 🚀 Getting Started
+## 🌱 Run the Project Without Docker
 
-### 1. Clone the repository
+### 1. 📦 Prerequisites
+
+Make sure you have the following installed:
+
+- Python 3.8+
+- pip
+- PostgreSQL (or SQLite if you prefer modifying settings)
+- (Optional) Virtualenv for isolated environments
+
+---
+
+### 2. 🔄 Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/SimpleLibraryApp.git
 cd SimpleLibraryApp
 ```
 
-### 2. Set up environment variables
-Create a .env file in the root directory:
+### 3. 🧪 Create a Virtual Environment (Recommended)
+```
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+```
 
-# .env
+### 4. 📜 Install Dependencies
+```
+pip install -r requirements.txt
+```
+
+### 5. ⚙️ Configure Environment
+Create a .env file in the project root directory:
+```
+# Example for PostgreSQL (update values based on your local setup)
+DATABASE_URL=postgres://youruser:yourpassword@localhost:5432/SimpleLibraryAppDB
+
+# Or for SQLite (uncomment if needed)
+# DATABASE_URL=sqlite:///db.sqlite3
+```
+
+Make sure your settings.py reads from the .env using os.environ.get.
+
+### 6. 🛠 Apply Migrations
+```
+python manage.py migrate
+```
+
+### 7. 👤 Create a Superuser
+```
+python manage.py createsuperuser
+```
+
+### 8. 🚀 Run the Server
+```
+python manage.py runserver
+```
+Visit http://127.0.0.1:8000 in your browser.
+
+## 🐳 Run the Project with Docker
+
+### 1. 📂 Clone the Repository
+```
+git clone https://github.com/your-username/SimpleLibraryApp.git
+cd SimpleLibraryApp
+```
+
+### 2. 🛠 Set up Environment Variables
+Create a .env file in the root directory:
 ```
 # Django DB connection
-DATABASE_URL=postgres://{postgres}:{password}@db:{port}/SimpleLibraryAppDB
+DATABASE_URL=postgres://postgres:yourpassword@db:5432/SimpleLibraryAppDB
 
 # PostgreSQL container settings
 POSTGRES_DB=SimpleLibraryAppDB
-POSTGRES_USER={postgres}
-POSTGRES_PASSWORD={password}
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=yourpassword
 ```
 
-### 3. Build and run the app
-Use Docker Compose to build and start both the Django and PostgreSQL containers:
-
+### 3. 🧱 Build and Start Containers
 ```
 docker-compose up --build
 ```
-
 Visit http://0.0.0.0:8000 in your browser.
 
-### 4. Apply migrations & create a superuser
+### 4. 🔁 Apply Migrations & Create Superuser
 In a separate terminal:
-
 ```
-# Run inside the container
 docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
@@ -48,14 +102,32 @@ docker-compose exec web python manage.py createsuperuser
 ## 📁 Project Structure
 ```
 SimpleLibraryApp/
-├── Dockerfile
-├── docker-compose.yml
-├── .env
-├── requirements.txt
-├── manage.py
-├── SimpleLibraryApp/      # Django project settings
-└── apis/
-└── books/
-└── books_and_authors.json
-└── Postman Collections/
+├── .dockerignore               # Docker ignore file
+├── .env                        # Environment variable file (You should add this later!)
+├── .gitignore                  # Git ignore file
+├── Dockerfile                  # Docker image build instructions
+├── README.md                   # Main project README
+├── README.Docker.md            # Docker-specific instructions (split out for clarity)
+├── books_and_authors.json      # Sample data to populate the database
+├── compose.yaml                # Docker Compose configuration
+├── manage.py                   # Django entry point
+├── requirements.txt            # Python dependencies
+
+├── apis/                       # Custom API logic (views, serializers, routers)
+├── books/                      # Django app: book/author models and logic
+├── Postman Collections/        # Postman files for API testing
+├── SimpleLibraryApp/           # Django project settings and URLs
+├── temp_tests/                 # Temporary or manual testing scripts
+└── .venv/                      # (Optional) Virtual environment (You add this later!)
 ```
+
+## 🧠 Features
+- Django + PostgreSQL backend
+- RESTful API for book/author management
+- Environment configuration via .env
+- Dockerized deployment with docker-compose
+- Clean project structure
+- Easily extensible
+
+## 🤝 Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
