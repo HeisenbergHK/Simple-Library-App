@@ -22,8 +22,14 @@ env = environ.Env(
     DEBUG=(bool, False)
 )
 
+# Debugging
+print("Looking for .env at:", os.path.join(BASE_DIR, '.env'))
+
 # Set the path to the .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
+# Debugging
+print("Loaded DATABASE_URL:", env("DATABASE_URL"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
@@ -38,7 +44,7 @@ SECRET_KEY = "django-insecure-iwc@e093=8i7=dzsyd2(-u)x0qyze!p+fpc(!ss*tq)9mb-nhw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["0.0.0.0"]
+ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1"]
 
 
 # Application definition
@@ -143,3 +149,6 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 }
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
