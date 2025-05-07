@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: django
-          image: hassankalantari/simple-library-app:latest  # <-- Replace this!
+          image: hassankalantari/simple-library-app:latest
           ports:
             - containerPort: 8000
           env:
