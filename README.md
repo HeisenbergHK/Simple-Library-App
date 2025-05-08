@@ -5,7 +5,6 @@ This app can be run either locally in your development environment or containeri
 
 This project demonstrates how to build a Django web application from scratch and deploy it both locally and using Docker, showcasing best practices in development, configuration, and containerization—with plans to extend deployment to Kubernetes using Minikube in the next phase.
 
----
 
 ## 🌱 Run the Project Without Docker
 
@@ -18,7 +17,6 @@ Make sure you have the following installed:
 - PostgreSQL (or SQLite if you prefer modifying settings)
 - (Optional) Virtualenv for isolated environments
 
----
 
 ### 2. 🔄 Clone the Repository
 
@@ -70,7 +68,7 @@ Visit http://127.0.0.1:8000 in your browser.
 
 ### 1. 📂 Clone the Repository
 ```
-git clone https://github.com/your-username/SimpleLibraryApp.git
+git clone https://github.com/HeisenbergHK/Simple-Library-App.git
 cd SimpleLibraryApp
 ```
 
@@ -99,6 +97,58 @@ docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
 
+## 🚢 Run the Project with Minikube
+
+### 1. 📦 Prerequisites
+
+Make sure you have the following installed:
+- Minikube
+- kubectl
+- Docker (for building images)
+
+### 2. 🔄 Start Minikube
+```
+minikube start
+```
+
+### 3. 🏗️ Build and Push Docker Image
+The Docker image is available on DockerHub as `hassankalantari/simple-library-app:latest`. You can either pull it directly or build it locally:
+
+```
+# Point shell to minikube's Docker daemon
+eval $(minikube docker-env)
+
+# Option 1: Pull from DockerHub (recommended)
+docker pull hassankalantari/simple-library-app:latest
+# Option 2: Build locally (if you want to make changes)
+# docker build -t hassankalantari/simple-library-app:latest .
+```
+
+### 4. 🚀 Deploy to Kubernetes
+```
+# Apply all Kubernetes configurations
+kubectl apply -f k8s/
+
+# Wait for deployments to be ready
+kubectl rollout status deployment/django
+kubectl rollout status deployment/postgres
+```
+
+### 5. 🔍 Verify Deployment
+```
+# Check running pods
+kubectl get pods
+
+# Check services
+kubectl get services
+```
+
+### 6. 🌐 Access the Application
+```
+# Open the service in your default browser
+minikube service django-service
+```
+
 ## 📁 Project Structure
 ```
 SimpleLibraryApp/
@@ -115,6 +165,11 @@ SimpleLibraryApp/
 
 ├── apis/                       # Custom API logic (views, serializers, routers)
 ├── books/                      # Django app: book/author models and logic
+├── K8s/                        # Kubernetes configuration files
+│   ├── django-deployment.yaml  # Django app deployment and service
+│   ├── postgres-deployment.yaml# PostgreSQL deployment and service
+│   ├── postgres-pv-pvc.yaml   # Persistent volume configuration
+│   └── postgres-configmap-secret.yaml # Database configuration
 ├── Postman Collections/        # Postman files for API testing
 ├── SimpleLibraryApp/           # Django project settings and URLs
 ├── temp_tests/                 # Temporary or manual testing scripts
@@ -125,6 +180,7 @@ SimpleLibraryApp/
 - Django + PostgreSQL backend
 - RESTful API for book/author management
 - Environment configuration via .env
+- Kubernetes deployment support
 - Dockerized deployment with docker-compose
 - Clean project structure
 - Easily extensible
