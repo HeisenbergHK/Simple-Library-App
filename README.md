@@ -23,7 +23,7 @@ Make sure you have the following installed:
 ### 2. 🔄 Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/SimpleLibraryApp.git
+git clone https://github.com/HeisenbergHK/Simple-Library-App.git
 cd SimpleLibraryApp
 ```
 
