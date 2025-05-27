@@ -1,10 +1,11 @@
 # SimpleLibraryApp 🐳📚
 
-A Django web application for managing a simple library system. It supports PostgreSQL as the backend and offers a clean REST API for managing books and authors.  
-This app can be run either locally in your development environment or containerized using Docker and Docker Compose.
+A Django web application for managing a simple library system.
+It supports PostgreSQL as the backend and offers a clean REST API for managing books and authors.
 
-This project demonstrates how to build a Django web application from scratch and deploy it both locally and using Docker, showcasing best practices in development, configuration, and containerization—with plans to extend deployment to Kubernetes using Minikube in the next phase.
+This app can be run locally in a development environment, containerized using Docker and Docker Compose, or deployed on a Kubernetes cluster using Minikube.
 
+This project demonstrates how to build a Django web application from scratch and deploy it using industry best practices—covering local development, Docker-based containerization, and full deployment on Kubernetes with Minikube.
 
 ## 🌱 Run the Project Without Docker
 
